@@ -14,6 +14,8 @@ The database and the schema "tournament" must exist. The schema can be created w
 - CREATE SCHEMA 'tournament'
 - Or with a visual tool (I have used Workbench in development)
 
+The view "recent_scores" must also exist (the SQL for this can be found in the report)
+
 **Required installations**
 
 - mySQL (the database)
