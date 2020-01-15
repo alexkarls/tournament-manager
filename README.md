@@ -70,7 +70,7 @@ http://localhost:3000/
 
 - Make sure that ALL dependencies (found in the root, client, api and scripts folder) are installed. 
 - Make sure that the database "tournament" exists.
-- Make sure that the tables exists, these are found in the scripts folder (submission (moodle) containts a model on this as well)
+- Make sure that the tables exists, these are found in the scripts folder (the submission contains a model on this as well)
 - Make sure that there are .env files in both the api and scripts folders and that these passes correct DB_HOST, DB_USER and DB_PASS (or hard code it in the .js files)
 
 For problems, other concerns or questions I'm available at: ak223ke@student.lnu.se
