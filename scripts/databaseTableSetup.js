@@ -17,14 +17,31 @@ const db = mysql.createConnection({
     database: 'tournament'
 })
 
+const createTeamTable = () => {
+    let sql = `CREATE TABLE IF NOT EXISTS team 
+    (
+        id VARCHAR(50) NOT NULL,
+        name VARCHAR(50) NOT NULL,
+        country VARCHAR(50) NOT NULL,
+        PRIMARY KEY(id)
+    )`
+    db.query(sql, (error, res) => {
+        if (error) {
+            throw error;
+        }
+        console.log(res)
+    })
+}
+createTeamTable();
+
 const createPlayerTable = () => {
-    let sql = `CREATE TABLE player 
+    let sql = `CREATE TABLE IF NOT EXISTS player 
     (
         id VARCHAR(50) NOT NULL,
         name VARCHAR(50) NOT NULL,
         number int NOT NULL,
         team_id VARCHAR(50) NOT NULL,
-        FOREIGN KEY (teamId) References team(id) ON DELETE CASCADE,
+        FOREIGN KEY (team_id) References team(id) ON DELETE CASCADE,
         PRIMARY KEY(id)
     )`
     db.query(sql, (error, res) => {
@@ -37,7 +54,7 @@ const createPlayerTable = () => {
 createPlayerTable()
 
 const createGameTable = () => {
-    let sql = `CREATE TABLE game
+    let sql = `CREATE TABLE IF NOT EXISTS game
     (
         id VARCHAR(50) NOT NULL,
         team_1 VARCHAR(50) NOT NULL,
@@ -58,7 +75,7 @@ const createGameTable = () => {
 createGameTable()
 
 const createScoreTable = () => {
-    let sql = `CREATE TABLE score
+    let sql = `CREATE TABLE IF NOT EXISTS score
     (
         id VARCHAR(50) NOT NULL,
         match_id VARCHAR(50) NOT NULL,
@@ -68,7 +85,7 @@ const createScoreTable = () => {
         date_time DATETIME NOT NULL,
         FOREIGN KEY (match_id) References game(id) ON DELETE CASCADE,
         FOREIGN KEY (team_id) References team(id) ON DELETE CASCADE,
-        FOREIGN KEY (player_id) References player(id) ON DELETE CASCADE
+        FOREIGN KEY (player_id) References player(id) ON DELETE CASCADE,
         PRIMARY KEY(id)
     );`
     db.query(sql, (error, res) => {
@@ -79,21 +96,3 @@ const createScoreTable = () => {
     })
 }
 createScoreTable()
-
-
-const createTeamTable = () => {
-    let sql = `CREATE TABLE team 
-    (
-        id VARCHAR(50) NOT NULL,
-        name VARCHAR(50) NOT NULL,
-        country VARCHAR(50) NOT NULL,
-        PRIMARY KEY(id)
-    )`
-    db.query(sql, (error, res) => {
-        if (error) {
-            throw error;
-        }
-        console.log(res)
-    })
-}
-createTeamTable();
