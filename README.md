@@ -9,7 +9,17 @@
 
 ## Instructions
 
-Some conditions must be met in order to run the application. 
+The database and the schema "tournament" must exist. The schema can be created with:
+
+- CREATE SCHEMA 'tournament'
+- Or with a visual tool (I have used Workbench in development)
+
+**Required installations**
+
+- mySQL (the database)
+- Node Package Manager (the package manager)
+
+**Some conditions must be met in order to run the application** 
 
 - The dependencies (node_modules) must be installed
 - It requires a .env file in the "api" and "script" folder.
